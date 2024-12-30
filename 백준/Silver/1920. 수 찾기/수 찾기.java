@@ -19,14 +19,28 @@ class Main{
         
         StringBuilder sb = new StringBuilder();
         
-        for(int j = 0; j < m; j++)
+        for(int i = 0; i < m; i++)
         {
-            int in = Arrays.binarySearch(prev, next[j]);
+            int start = 0;
+            int end = n - 1;
             
-            if(in < 0) sb.append("0\n");
-            else sb.append("1\n");
-        }
-        
+            while(true){
+                int mid = (start + end) / 2;
+                
+                if(prev[mid] == next[i]){
+                    sb.append("1\n");
+                    break;
+                }
+                else if(prev[mid] < next[i]) start = mid + 1;
+                else end = mid - 1;
+                
+                if(start > end){
+                    sb.append("0\n");
+                    break;
+                }
+            }
+
+        }        
         System.out.println(sb.toString());
     }
 }
