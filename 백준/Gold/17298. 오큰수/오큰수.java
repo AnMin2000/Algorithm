@@ -4,6 +4,7 @@ class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+        
         int n = Integer.parseInt(br.readLine());
         
         int[] arr = new int[n];
@@ -12,10 +13,9 @@ class Main{
         
         Stack<Integer> stack = new Stack<>();
         
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++) arr[i] = Integer.parseInt(st.nextToken());
         
-        String[] tmp = br.readLine().split(" ");
-        
-        for(int i = 0; i < n; i++) arr[i] = Integer.valueOf(tmp[i]);
         result[n - 1] = -1;
         stack.push(arr[n - 1]);
 
