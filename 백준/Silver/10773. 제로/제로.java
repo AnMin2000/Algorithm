@@ -16,9 +16,10 @@ class Main{
         }
         
         int result = 0;
-        while(!stack.isEmpty()){
-            result += stack.pop();
+        for(int a : stack) {
+        	result += a;
         }
+
         System.out.println(result);
     }
 }
