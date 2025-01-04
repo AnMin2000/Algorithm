@@ -1,55 +1,60 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class Main {
-    static int N;
-    static int K;
-    static int[] check = new int[100001];
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        K = sc.nextInt();
-
-        if (N == K) {
+class Main{
+    
+	static int K;
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        
+        int N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        if(N ==0 && K == 0){
             System.out.println(0);
-        } else {
-            bfs(N);
+            return;
         }
+
+        
+        bfs(N, 0);
+
     }
-
-    static void bfs(int num) {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(num);
-        check[num] = 0;
-
-        while (!q.isEmpty()) {
-            int temp = q.poll();
-
-            if (temp == K) {
-                    System.out.println(check[temp]);
-                    return;
-                }
+    static void bfs(int sum, int count){
+        int[] visit = new int[100001];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(sum);
+        visit[sum] = 0;
+        
+        while(!queue.isEmpty()){
+            int value = queue.poll();
             
-            for (int i = 0; i < 3; i++) {
-                int next;
-
-                if (i == 0) {
-                    next = temp + 1;
-                } else if (i == 1) {
-                    next = temp - 1;
-                } else {
-                    next = temp * 2;
+            if(value == K){
+                System.out.println(visit[value]);
+                return;
+            }
+            for(int i = 0; i < 3; i++){
+                if(i == 0){
+                    if(value + 1 >= 0 && value + 1 < 100001 && visit[value + 1] == 0){
+                        visit[value + 1] = visit[value] + 1;
+                        queue.offer(value + 1);
+                    }
                 }
-
-                
-
-                if (next >= 0 && next < check.length && check[next] == 0) {
-                    q.add(next);
-                    check[next] = check[temp] + 1;
+                else if(i == 1){
+                    if(value - 1 >= 0 && value - 1 < 100001 && visit[value - 1] == 0){
+                        visit[value - 1] = visit[value] + 1;
+                        queue.offer(value - 1);
+                    }
+                }
+                else{
+                    if(value * 2 >= 0 && value * 2 < 100001 && visit[value * 2] == 0){
+                        visit[value * 2] = visit[value] + 1;
+                        queue.offer(value * 2);
+                    }
                 }
             }
         }
+        
+        
+        
     }
 }
