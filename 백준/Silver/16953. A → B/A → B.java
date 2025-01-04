@@ -4,7 +4,7 @@ class Main{
     static long A, B;
     static Queue<Long> queue = new LinkedList<>();
     static long result = -1;
-    static Map<Long, Integer> map = new HashMap<>();
+    static Map<Long, Long> map = new HashMap<>();
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -12,7 +12,7 @@ class Main{
         A = Integer.parseInt(st.nextToken());
         B = Integer.parseInt(st.nextToken());
         
-        map.put(A, 1);
+        map.put(A, (long)1);
         queue.offer(A);
         
         bfs();
