@@ -10,7 +10,7 @@ class Main{
         
         int N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        if(N ==0 && K == 0){
+        if(N == K){
             System.out.println(0);
             return;
         }
@@ -23,33 +23,30 @@ class Main{
         int[] visit = new int[100001];
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(sum);
-        visit[sum] = 0;
+        visit[sum] = 1;
         
         while(!queue.isEmpty()){
-            int value = queue.poll();
+            int value = queue.poll(); // 큐에서 나온 값이 현재값 >> 배열[큐] 는 횟수
             
-            if(value == K){
-                System.out.println(visit[value]);
-                return;
-            }
+           
             for(int i = 0; i < 3; i++){
+            	int next = 0; 
                 if(i == 0){
-                    if(value + 1 >= 0 && value + 1 < 100001 && visit[value + 1] == 0){
-                        visit[value + 1] = visit[value] + 1;
-                        queue.offer(value + 1);
-                    }
+                	next = value + 1;
                 }
                 else if(i == 1){
-                    if(value - 1 >= 0 && value - 1 < 100001 && visit[value - 1] == 0){
-                        visit[value - 1] = visit[value] + 1;
-                        queue.offer(value - 1);
-                    }
+                	next = value - 1;
                 }
                 else{
-                    if(value * 2 >= 0 && value * 2 < 100001 && visit[value * 2] == 0){
-                        visit[value * 2] = visit[value] + 1;
-                        queue.offer(value * 2);
-                    }
+                	next = value * 2;
+                }
+                if(next == K){
+                    System.out.println(visit[value]);
+                    return;
+                }
+                if(next >= 0 && next < 100001 && visit[next] == 0) {
+                	visit[next] = visit[value] + 1;
+                	queue.offer(next);
                 }
             }
         }
