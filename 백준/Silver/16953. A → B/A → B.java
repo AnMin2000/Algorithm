@@ -1,47 +1,34 @@
 import java.util.*;
 import java.io.*;
-class Main{
-    static long A, B;
-    static Queue<Long> queue = new LinkedList<>();
-    static long result = -1;
-    static Map<Long, Long> map = new HashMap<>();
-    public static void main(String[] args) throws IOException{
+
+class Main {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         
-        A = Integer.parseInt(st.nextToken());
-        B = Integer.parseInt(st.nextToken());
+        long A = Long.parseLong(st.nextToken());
+        long B = Long.parseLong(st.nextToken());
         
-        map.put(A, (long)1);
-        queue.offer(A);
+        int count = 1;
         
-        bfs();
-        
-        System.out.println(result);
-    }
-    static void bfs(){
-        while(!queue.isEmpty()){
-            long num = queue.poll();
-            
-            if(num * 2 <= B && !map.containsKey(num * 2)){
-                queue.add(num * 2);
-                map.put(num * 2, map.get(num) + 1);
-                
-                if(num * 2 == B){
-                    result = map.get(num * 2);
-                    return;
-                }
-            }
-            if(num * 10 + 1 <= B && !map.containsKey(num * 10 + 1)){
-                queue.add(num * 10 + 1);
-                map.put(num * 10 + 1, map.get(num) + 1);
-                
-                if(num * 10 + 1 == B){
-                    result = map.get(num * 10 + 1);
-                    return;
-                }
+        while (B != A) {
+            if (B < A) { // A로 만들 수 없는 경우
+                count = -1;
+                break;
             }
             
+            if (B % 2 == 0) { // B가 2로 나누어 떨어지면 2로 나누기
+                B /= 2;
+            } else if (B % 10 == 1) { // 끝자리가 1이면 1 제거
+                B /= 10;
+            } else { // 위 조건에 해당하지 않으면 불가능
+                count = -1;
+                break;
+            }
+            
+            count++;
         }
+        
+        System.out.println(B == A ? count : -1);
     }
 }
