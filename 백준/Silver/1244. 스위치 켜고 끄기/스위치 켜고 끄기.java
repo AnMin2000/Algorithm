@@ -40,7 +40,7 @@ class Main{
         StringBuilder sb = new StringBuilder();
         for(int i = 1; i <= n; i++) {
             sb.append(arr[i] + " ");
-            if(i % 20 == 0 && n > 20) sb.append("\n");
+            if(i % 20 == 0) sb.append("\n");
         }
         
 
