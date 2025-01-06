@@ -29,8 +29,7 @@ class Main{
             else if(arr[2].equals("F")) level += 0;
         }
         
-        System.out.printf("%8f", level / sum);
-     
+        System.out.println(level / sum);
         
         
     }
