@@ -7,7 +7,6 @@ class Main{
     static LinkedList<int[]> tail = new LinkedList<>();
     static int[][] xy = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
     static int count = 0;
-    static int[] tmpArr = new int[2];
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
@@ -36,6 +35,7 @@ class Main{
         int x = 1;
         int time = 0;
         String arrow = "";
+        tail.add(new int[] {y, x});
         while(true){
             if(!queue.isEmpty()){
                 String[] tmp = queue.poll();
@@ -56,11 +56,7 @@ class Main{
                     	arr[y][x] = 0;
                     }
                     else if(!tail.isEmpty()){
-                    	if(tmpArr[0] == y && tmpArr[1] == x) return;
-                    	
-                    	int ar[] = tail.poll();
-                    	tmpArr[0] = ar[0];
-                    	tmpArr[1] = ar[1];
+                    	tail.poll();
                     	tail.add(new int[]{y, x});
                     	
                     }
