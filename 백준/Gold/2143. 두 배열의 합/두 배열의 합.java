@@ -16,7 +16,8 @@ public class Main {
             long sum = 0;
             for (int j = i; j < n; j++) {
                 sum += A[j];
-                mapA.put(sum, mapA.getOrDefault(sum, 0) + 1);
+                if(mapA.containsKey(sum)) mapA.put(sum, mapA.get(sum) + 1);
+                else mapA.put(sum, 1);
             }
         }
 
@@ -26,7 +27,7 @@ public class Main {
             long sum = 0;
             for (int j = i; j < m; j++) {
                 sum += B[j];
-                count += mapA.getOrDefault(T - sum, 0); // T - sum을 만족하는 경우의 수 더하기
+                if(mapA.containsKey(T - sum)) count += mapA.get(T - sum);
             }
         }
 
