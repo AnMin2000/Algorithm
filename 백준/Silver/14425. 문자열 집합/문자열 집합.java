@@ -1,21 +1,19 @@
-import java.util.*;
 import java.io.*;
-class Main{
-    public static void main(String[] args) throws IOException{
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        
-        String[] arr = new String[N];
-        for(int i = 0; i < N; i++) arr[i] = br.readLine();
-        
-        Arrays.sort(arr);
-        
-        int ctn = 0;
-        for(int i = 0; i < M; i++){
-            if(Arrays.binarySearch(arr, br.readLine()) >= 0) ctn++;
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        Map<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(br.readLine(), 0);
         }
-        System.out.println(ctn);
+        int count = 0;
+        for (int i = 0; i < m; i++) {
+            if (map.containsKey(br.readLine())) count++;
+        }
+        System.out.print(count);
     }
 }
