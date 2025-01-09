@@ -9,15 +9,16 @@ class Main{
         while(T-->0){
             int N = Integer.parseInt(br.readLine());
             StringTokenizer st = new StringTokenizer(br.readLine());
-            Map<String, Integer> map = new HashMap<>();
-            for(int i = 0; i < N; i++) map.put(st.nextToken(), 0);
-            
+            int[] arr = new int[N];
+            for(int i = 0; i < N; i++) arr[i] = Integer.parseInt(st.nextToken());
+            Arrays.sort(arr);
             int M = Integer.parseInt(br.readLine());
             st = new StringTokenizer(br.readLine());
             for(int i = 0; i < M; i++){
-                if(map.containsKey(st.nextToken())) sb.append("1 \n");
+                if(Arrays.binarySearch(arr, Integer.parseInt(st.nextToken())) > -1) sb.append("1 \n");
                 else sb.append("0 \n");
             }
+            
         }
         System.out.println(sb.toString());
     }
