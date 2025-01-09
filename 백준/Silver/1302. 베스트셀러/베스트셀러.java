@@ -15,16 +15,13 @@ class Main{
         }
         List<String> list = new ArrayList<>(map.keySet());
         
-        list.sort((o1, o2) -> map.get(o2) - map.get(o1));
         
         List<String> tmp = new ArrayList<>();
-        
         for(String key : list) {
         	if(max == map.get(key)) {
         		max = map.get(key);
         		tmp.add(key);
         	}
-        	else break;
         }
         Collections.sort(tmp);
         System.out.println(tmp.get(0));
