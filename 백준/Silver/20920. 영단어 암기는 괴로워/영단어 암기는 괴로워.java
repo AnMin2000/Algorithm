@@ -17,7 +17,7 @@ class Main{
         
         List<String> key = new ArrayList<>(map.keySet());
         
-        key.sort(new Comparator<String>() {
+        Collections.sort(key, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
             	if(o1.length() == o2.length() && map.get(o1) == map.get(o2)) return o1.compareTo(o2); 
