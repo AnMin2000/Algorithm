@@ -13,8 +13,6 @@ class Main{
 		}
 		int m = Integer.parseInt(br.readLine());
 		
-		Arrays.sort(arr);
-		
 		int start = 0;
 		int end = max;
 		int mid = 0;
@@ -28,7 +26,6 @@ class Main{
 				}
 				else sum += arr[i];
 			}
-			
 			if(sum <= m) {
 				result = mid;
 				start = mid + 1;
