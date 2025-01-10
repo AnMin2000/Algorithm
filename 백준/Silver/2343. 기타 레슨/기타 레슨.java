@@ -44,12 +44,11 @@ class Main {
         int sum = 0;
 
         for (int i = 0; i < n; i++) {
-            if (sum + arr[i] > mid) {
+            sum += arr[i];
+            if (sum > mid) {
                 count++;
                 sum = arr[i]; // 새로운 블루레이 시작
-            } else {
-                sum += arr[i];
-            }
+            } 
         }
 
         return count;
