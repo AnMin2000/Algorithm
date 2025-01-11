@@ -8,8 +8,8 @@ class Main{
         int n = Integer.parseInt(br.readLine());
 
 
-        long[] dp = new long[n + 1];
-        long[] arr = new long[n + 1];
+        int[] dp = new int[n + 1];
+        int[] arr = new int[n + 1];
         for(int i = 1; i <= n; i++) arr[i] = Integer.parseInt(br.readLine());
         
         
