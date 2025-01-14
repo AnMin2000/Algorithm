@@ -1,26 +1,26 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
+    static int N;
+    static int[] dp;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		int[] dp = new int[n + 1];
-		Arrays.fill(dp, Integer.MAX_VALUE);
-		dp[0] = 0;
-		dp[1] = 1;
-		
-		for(int i = 2; i <= n; i++) {
-			int num = (int)Math.sqrt(i);
-			for(int j = 1; j <= num; j++) {
-				dp[i] = Math.min(dp[i], i / (j * j) + dp[i % (j * j)]);
+        N = Integer.parseInt(st.nextToken());
+        dp = new int[N + 1];
 
-			}
-			
-		}
-		System.out.println(dp[n]);
-	}
+        for (int i = 1; i <= N; i++) {
+            dp[i] = i;
+            for (int j = 1; j * j <= i; j++) {
+                if (dp[i] > dp[i - j * j] + 1) {
+                    dp[i] = dp[i - j * j] + 1;
+                }
+            }
+        }
+        System.out.println(dp[N]);
 
-
+    }
 }
