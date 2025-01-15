@@ -43,9 +43,8 @@ class Main{
 		
 		StringBuilder sb = new StringBuilder();
 		for(int i = 1; i <= n; i++) {
-			if(dp[i] == Integer.MAX_VALUE) sb.append("INF");
-			else sb.append(dp[i]);
-			sb.append("\n");
+			sb.append(dp[i] == Integer.MAX_VALUE ? "INF" : dp[i]).append("\n");
+
 		}
 		
 		System.out.println(sb.toString());
