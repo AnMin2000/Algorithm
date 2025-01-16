@@ -16,7 +16,7 @@ class Main{
 	static boolean[] visit;
 	static int ss, ee;
 	static int n;
-	static int INF = 200_000_100;
+	static int INF = 200_000_001;
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
