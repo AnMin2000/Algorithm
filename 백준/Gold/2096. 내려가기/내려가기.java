@@ -46,19 +46,6 @@ class Main{
 				}
 			}
 		}
-//		for(int j = 0; j < n; j++) {
-//			for(int i = 0; i < 3; i++) {
-//				System.out.print(min[j][i] + " ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-//		for(int j = 0; j < n; j++) {
-//			for(int i = 0; i < 3; i++) {
-//				System.out.print(max[j][i] + " ");
-//			}
-//			System.out.println();
-//		}
 		
 		System.out.print(Math.max(max[n - 1][0], Math.max(max[n - 1][1], max[n - 1][2])) + " ");
 		System.out.println(Math.min(min[n - 1][0], Math.min(min[n - 1][1], min[n - 1][2])));
