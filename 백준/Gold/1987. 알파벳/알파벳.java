@@ -1,51 +1,45 @@
 import java.util.*;
+import java.io.*;
 
-
-
-public class Main {
-
-	static int x, y;
-	static List<Character> visit;
-	static char[][] alpa;
-	static int max;
-   public static void main(String[] args) {
-      
-	   Scanner sc = new Scanner(System.in);
-	   
-	   y = sc.nextInt();
-	   x = sc.nextInt();
-	   
-	   visit = new ArrayList<>();
-	   alpa = new char[y][x];
-	   
-	   for(int j = 0; j < y; j++) {
-		   alpa[j] = sc.next().toCharArray();
-	   }
-	   max = 0;
-	   dfs(0,0,1);
-
-	   System.out.println(max);
-     
-   }
-   
-   static void dfs(int j, int i, int count) {
-	   max = Math.max(max, count);
-	   visit.add(alpa[j][i]);
-	   if(i - 1 >= 0 && !visit.contains(alpa[j][i-1])) {
-		   dfs(j, i-1, count + 1); 
-		   visit.remove(visit.size()-1);
-	   }
-	   if(i + 1 < x && !visit.contains(alpa[j][i+1])) {
-		   dfs(j, i+1, count + 1); 
-		   visit.remove(visit.size()-1);
-	   }
-	   if(j - 1 >= 0 && !visit.contains(alpa[j-1][i])) {
-		   dfs(j-1, i, count + 1); 
-		   visit.remove(visit.size()-1);
-	   }
-	   if(j + 1 < y && !visit.contains(alpa[j+1][i])) {
-		   dfs(j+1, i, count + 1);	  
-		   visit.remove(visit.size()-1);
-	   }
-   }
+class Main{
+	static int n, m;
+	static int max = 0;
+	static char[][]arr;
+	static boolean[][] visit;
+	static int[][] xy = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+	static Set<Character> set = new LinkedHashSet<>();
+	
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		
+		arr = new char[n][m];
+		for(int j = 0; j < n; j++) {
+			arr[j] = br.readLine().toCharArray();
+		}
+		
+		visit = new boolean[n][m];
+		set.add(arr[0][0]);
+		dfs(0, 0);
+		
+		System.out.println(max);
+	}
+	static void dfs(int y, int x) {
+		max = Math.max(max, set.size());
+		visit[y][x] = true;
+		
+		for(int i = 0; i < 4; i++) {
+			int ny = y + xy[i][0];
+			int nx = x + xy[i][1];
+			
+			if(nx >= 0 && ny >= 0 && nx < m && ny < n && !visit[ny][nx] && !set.contains(arr[ny][nx])) {
+				set.add(arr[ny][nx]);
+				dfs(ny, nx);
+				visit[ny][nx] = false;
+				set.remove(arr[ny][nx]);
+			}
+		}
+	}
 }
