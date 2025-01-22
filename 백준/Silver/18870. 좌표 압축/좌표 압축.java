@@ -1,40 +1,38 @@
-import java.util.*;
 import java.io.*;
-class Main{
-    public static void main(String[] args) throws IOException{
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[n];
+        int[] sortedArr = new int[n];
         
-        Map<Integer, Integer> map = new LinkedHashMap<>();
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i = 0; i < n; i++) map.put(i, Integer.parseInt(st.nextToken()));
-        
-        List<Integer> list = new ArrayList<>(map.keySet());
-       Collections.sort(list, new Comparator<Integer>(){
-           @Override
-           public int compare(Integer o1, Integer o2){
-               return map.get(o1) - map.get(o2);
-           }
-       });
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            sortedArr[i] = arr[i];
+        }
 
-        int[] result = new int[n];
+        // 배열 정렬
+        Arrays.sort(sortedArr);
 
-        int prev = Integer.MIN_VALUE;
+        // 좌표 압축 결과 저장
+        Map<Integer, Integer> compressed = new HashMap<>();
         int count = 0;
-       for(int key : list){
-           int current = map.get(key);
-           if(prev == current) result[key] = count - 1;
-           else {
-               result[key] = count++;
-               prev = current;
-           }
-       }
+        for (int num : sortedArr) {
+            if (!compressed.containsKey(num)) {
+                compressed.put(num, count++);
+            }
+        }
 
+        // 결과 출력
         StringBuilder sb = new StringBuilder();
-       for(int i = 0; i < n; i++) sb.append(result[i]).append(" ");
+        for (int num : arr) {
+            sb.append(compressed.get(num)).append(" ");
+        }
 
-       System.out.println(sb.toString());
-        
-        
+        System.out.println(sb.toString());
     }
 }
