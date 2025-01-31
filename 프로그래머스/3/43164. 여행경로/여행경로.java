@@ -17,26 +17,27 @@ class Solution {
         arr = tickets;
         answer = new String[tickets.length + 1];
         
-        List<String> list = new ArrayList<>();
-        list.add("ICN");
+        Stack<String> stack = new Stack<>();
+        stack.push("ICN");
 
-        dfs(list);
+        dfs(stack);
         return answer;
     }
-    static void dfs(List<String> list){
-       if(list.size() == arr.length + 1){
-           for(int i = 0; i < list.size(); i++) answer[i] = list.get(i);
+    static void dfs(Stack<String> stack){
+       if(stack.size() == arr.length + 1){
+           int index = 0;
+           for(String s : stack) answer[index++] = s;
            state = true;
        }
         
         for(int i = 0; i < arr.length; i++){
-            if(!visit[i] && arr[i][0].equals(list.get(list.size() - 1))){
+            if(!visit[i] && arr[i][0].equals(stack.peek())){
                 
                 visit[i] = true;
-                list.add(arr[i][1]);
-                dfs(list);
+                stack.push(arr[i][1]);
+                dfs(stack);
                 if(state) return;
-                list.remove(list.size() - 1);
+                stack.pop();
                 visit[i] = false;
             }
         }
