@@ -1,0 +1,8 @@
+-- 코드를 입력하세요
+SELECT DISTINCT USER_ID, PRODUCT_ID
+FROM ONLINE_SALE A
+WHERE (USER_ID, PRODUCT_ID) IN (SELECT USER_ID, PRODUCT_ID
+                               FROM ONLINE_SALE B
+                               WHERE A.USER_ID = B.USER_ID AND A.PRODUCT_ID = B.PRODUCT_ID
+                               HAVING COUNT(B.USER_ID) > 1)
+ORDER BY 1, 2 DESC
